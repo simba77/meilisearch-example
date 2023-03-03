@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  webserver:
+    build: docker/general
+    container_name: ubuntu.${APP_NAMESPACE:-greenspark}
+    depends_on:
+      - meilisearch
+    volumes:
+      - .:/var/www/html
+    ports:
+      - '${NGINX_HTTP_PORT:-8000}:80'
+    networks:
+      - web
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.web-http.rule=Host(`${APP_HOST:-greenspark.loc}`)
+  meilisearch:
+    image: 'getmeili/meilisearch'
+    container_name: meilisearch.greenspark
+    volumes:
+      - ./docker/meilisearch/meili_data:/meili_data
+    ports:
+      - '7700:7700'
+    environment:
+      MEILI_ENV: 'development'
+    labels:
+      - traefik.enable=false
+    networks:
+      - web
+      - default
+
+networks:
+  web:
+    name: traefik_default
+    external: true

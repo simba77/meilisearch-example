@@ -1,0 +1,15 @@
+{
+    "require": {
+        "meilisearch/meilisearch-php": "^1.0",
+        "guzzlehttp/guzzle": "^7.5",
+        "http-interop/http-factory-guzzle": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2"
+    }
+}
