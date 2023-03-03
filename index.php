@@ -46,7 +46,7 @@ $searchQuery = $_GET['query'] ?? '';
 
     $results = $client->index('catalog')
         ->search($searchQuery, [
-            'attributesToHighlight' => ['name'],
+            'attributesToHighlight' => ['*'],
             'sort' => ['model:asc'],
             'limit' => 50,
         ]);
@@ -58,8 +58,10 @@ $searchQuery = $_GET['query'] ?? '';
             <div class="card-body">
                 <div class="fw-bold"><?= $hit['_formatted']['name'] ?></div>
                 <div class="small"><?= $hit['_formatted']['searchName'] ?></div>
+                <div class="small">Модель: <?= $hit['_formatted']['model'] ?></div>
                 <div class="small">Артикул: <?= $hit['_formatted']['article'] ?></div>
                 <div class="small">Штрих-код: <?= $hit['_formatted']['barcode'] ?></div>
+                <div class="small">ID: <?= $hit['_formatted']['id'] ?></div>
             </div>
         </div>
         <?php
