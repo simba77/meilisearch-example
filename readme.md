@@ -9,7 +9,13 @@
 
 Для простоты развертывания можно установить git https://git-scm.com/ и склонировать репозиторий с его помощью.
 
+```bash
 git clone https://github.com/simba77/meilisearch-example.git meilisearch
+```
+
+```bash
+cd meilisearch
+```
 
 Или вручную скачать архивом и распаковать в нужную папку.
 
