@@ -47,7 +47,8 @@ $searchQuery = $_GET['query'] ?? '';
     $results = $client->index('catalog')
         ->search($searchQuery, [
             'attributesToHighlight' => ['name'],
-            'sort' => ['model:asc']
+            'sort' => ['model:asc'],
+            'limit' => 50,
         ]);
 
 
