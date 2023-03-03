@@ -24,6 +24,7 @@ $index->updateSettings(
         'stopWords' => [
             'на', // Дисплей на iphone 7
             'для',
+            'с',
         ],
         'sortableAttributes' => [],
         'synonyms' => [
@@ -32,6 +33,9 @@ $index->updateSettings(
             'iphone 10' => ['iphone x', 'iphone ten', 'iphone икс'],
             'iphone ten' => ['iphone x', 'iphone 10', 'iphone икс'],
             'iphone икс' => ['iphone x', 'iphone 10', 'iphone ten'],
+            'айфон' => ['iphone'],
+            'phone' => ['iphone'],
+            'сенсор' => ['тачскрин', 'тач'],
 
             // Дисплей на iphone семь плюс
             'пять' => ['5'],
@@ -43,16 +47,26 @@ $index->updateSettings(
             'одиннадцать' => ['11'],
             'двенадцать' => ['12'],
             'тринадцать' => ['13'],
+
             'плюс' => ['plus'],
+            'про' => ['pro'],
+            'про макс' => ['pro max'],
+
+            'ксиоми' => ['xiaomi', 'сяоми'],
+            'сяоми' => ['xiaomi', 'ксиоми'],
+            'редми' => ['redmi', 'mi'],
+            'поко' => ['poco'],
+            'ноут' => ['note'],
+            'нот' => ['note'],
         ],
         'typoTolerance' => [
             'enabled' => true,
             'minWordSizeForTypos' => [
-                'oneTypo' => 5,
-                'twoTypos' => 8
+                'oneTypo' => 3,
+                'twoTypos' => 5
             ],
             'disableOnWords' => [],
-            'disableOnAttributes' => []
+            'disableOnAttributes' => ['article', 'barcode']
         ],
         'pagination' => [
             'maxTotalHits' => 5000

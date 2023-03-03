@@ -8,4 +8,4 @@ stop:
 	docker-compose stop
 
 shell:
-	docker exec -it $$(docker ps -q -f name=ubuntu.greenspark) bash
+	docker exec -it $$(docker ps -q -f name=ubuntu.meilisearch) bash

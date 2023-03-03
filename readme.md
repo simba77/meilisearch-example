@@ -9,7 +9,7 @@
 
 Для простоты развертывания можно установить git https://git-scm.com/ и склонировать репозиторий с его помощью.
 
-git clone https://github.com/... meilisearch
+git clone https://github.com/simba77/meilisearch-example.git meilisearch
 
 Или вручную скачать архивом и распаковать в нужную папку.
 
@@ -45,5 +45,10 @@ Meilisearch будет доступен по адресу:
 
 http://localhost:7700/
 
+Создать индекс:
 
+http://localhost:8000/create-index.php
 
+Обновить настройки индекса:
+
+http://localhost:8000/index-settings.php

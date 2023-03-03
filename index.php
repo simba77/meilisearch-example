@@ -27,7 +27,8 @@ $searchQuery = $_GET['query'] ?? '';
 <body>
 <div class="container">
     <div class="mt-3 mb-4">
-        <a href="create-index.php" class="btn btn-outline-primary">Создать индекс</a>
+        <a href="create-index.php" class="btn btn-outline-primary me-2">Создать индекс</a>
+        <a href="index-settings.php" class="btn btn-outline-primary">Обновить настройки</a>
     </div>
     <h3>Поиск</h3>
     <form action="" method="get">
@@ -59,7 +60,6 @@ $searchQuery = $_GET['query'] ?? '';
                 <div class="small">Штрих-код: <?= $hit['_formatted']['barcode'] ?></div>
             </div>
         </div>
-
         <?php
     }
 
