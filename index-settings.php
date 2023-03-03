@@ -19,14 +19,24 @@ $index->updateSettings(
             'exactness',
         ],
         'distinctAttribute' => null,
-        'searchableAttributes' => ['*'],
+        'searchableAttributes' => [
+            'name',
+            'model',
+            'searchName',
+            'article',
+            'article',
+            'barcode',
+        ],
         'displayedAttributes' => ['*'],
         'stopWords' => [
             'на', // Дисплей на iphone 7
             'для',
             'с',
         ],
-        'sortableAttributes' => [],
+        'sortableAttributes' => [
+            'name',
+            'model',
+        ],
         'synonyms' => [
             // Дисплей на iphone икс
             // Дисплей на iphone 10
