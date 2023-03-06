@@ -2,7 +2,8 @@
     "require": {
         "meilisearch/meilisearch-php": "^1.0",
         "guzzlehttp/guzzle": "^7.5",
-        "http-interop/http-factory-guzzle": "^1.0"
+        "http-interop/http-factory-guzzle": "^1.0",
+        "b1rdex/text-lang-correct": "^0.1.6"
     },
     "config": {
         "allow-plugins": {

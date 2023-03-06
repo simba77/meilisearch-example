@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use B1rdex\Text\LangCorrect;
 use Meilisearch\Client;
 
 $client = new Client('http://meilisearch:7700');
@@ -50,6 +51,20 @@ $searchQuery = $_GET['query'] ?? '';
             'sort' => ['model:asc'],
             'limit' => 50,
         ]);
+
+    if (!$results->count()) {
+        $lang = new \B1rdex\Text\LangCorrect();
+        $result = $lang->parse($searchQuery, LangCorrect::KEYBOARD_LAYOUT);
+
+        echo '<div class="alert alert-danger">' . $result . '</div>';
+
+        $results = $client->index('catalog')
+            ->search($result, [
+                'attributesToHighlight' => ['*'],
+                'sort' => ['model:asc'],
+                'limit' => 50,
+            ]);
+    }
 
 
     foreach ($results->getHits() as $hit) {
