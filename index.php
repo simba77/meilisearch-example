@@ -35,11 +35,11 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
     </div>-->
     <h3>Поиск</h3>
     <form action="" method="get">
-        <div class="mb-2">
+<!--        <div class="mb-2">
             <label>
-                <input type="checkbox" name="matching" value="all" <?= $matchingAll ? 'checked' : '' ?>> Точный поиск
+                <input type="checkbox" name="matching" value="all" <?php /*= $matchingAll ? 'checked' : '' */?>> Точный поиск
             </label>
-        </div>
+        </div>-->
         <input type="search" class="form-control" name="query" value="<?= htmlspecialchars($searchQuery) ?>">
         <div class="my-3">
             <button class="btn btn-primary" type="submit">Найти</button>
