@@ -24,14 +24,45 @@ $index->updateSettings(
             'model',
             'searchName',
             'article',
-            'article',
             'barcode',
         ],
         'displayedAttributes' => ['*'],
         'stopWords' => [
             'на', // Дисплей на iphone 7
             'для',
-            'с',
+            //'с',
+
+            //предлоги в неправильной раскладке
+            ',tp',
+            ',kbp',
+            //'d',
+            'dvtcnj',
+            'dyt',
+            'lkz',
+            'lj',
+            'pf',
+            'bp',
+            'bp-pf',
+            'bp-gjl',
+            //'r',
+            'rhjvt',
+            'vt;le',
+            'yf',
+            'yfl',
+            //'j',
+            'jn',
+            'gthtl',
+            'gj',
+            'gjl',
+            'ghb',
+            'ghj',
+            'hflb',
+            //'c',
+            'crdjpm',
+            'chtlb',
+            //'e',
+            'xthtp',
+
         ],
         'sortableAttributes' => [
             'name',
@@ -46,6 +77,8 @@ $index->updateSettings(
             'айфон' => ['iphone'],
             'phone' => ['iphone'],
             'сенсор' => ['тачскрин', 'тач'],
+
+            'айфон 5с' => ['iphone 5c'],
 
             // Дисплей на iphone семь плюс
             'пять' => ['5'],

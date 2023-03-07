@@ -50,6 +50,7 @@ $searchQuery = $_GET['query'] ?? '';
             'attributesToHighlight' => ['*'],
             'sort' => ['model:asc'],
             'limit' => 50,
+            'matchingStrategy' => 'all'
         ]);
 
     if (!$results->count()) {
@@ -63,6 +64,7 @@ $searchQuery = $_GET['query'] ?? '';
                 'attributesToHighlight' => ['*'],
                 'sort' => ['model:asc'],
                 'limit' => 50,
+                'matchingStrategy' => 'all'
             ]);
     }
 
