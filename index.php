@@ -9,6 +9,8 @@ $client = new Client('http://meilisearch:7700');
 
 $searchQuery = $_GET['query'] ?? '';
 
+$matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,6 +35,12 @@ $searchQuery = $_GET['query'] ?? '';
     </div>
     <h3>Поиск</h3>
     <form action="" method="get">
+        <div class="mb-2">
+            <label>
+                <input type="checkbox" name="matching" value="all" <?= $matchingAll ? 'checked' : '' ?>> Matching
+                Strategy All
+            </label>
+        </div>
         <input type="search" class="form-control" name="query" value="<?= htmlspecialchars($searchQuery) ?>">
         <div class="my-3">
             <button class="btn btn-primary" type="submit">Найти</button>
@@ -50,7 +58,7 @@ $searchQuery = $_GET['query'] ?? '';
             'attributesToHighlight' => ['*'],
             'sort' => ['model:asc'],
             'limit' => 50,
-            'matchingStrategy' => 'all'
+            'matchingStrategy' => $matchingAll ? 'all' : 'last'
         ]);
 
     if (!$results->count()) {
@@ -64,7 +72,7 @@ $searchQuery = $_GET['query'] ?? '';
                 'attributesToHighlight' => ['*'],
                 'sort' => ['model:asc'],
                 'limit' => 50,
-                'matchingStrategy' => 'all'
+                'matchingStrategy' => $matchingAll ? 'all' : 'last'
             ]);
     }
 
