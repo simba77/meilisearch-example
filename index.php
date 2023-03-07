@@ -29,16 +29,15 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
 </head>
 <body>
 <div class="container">
-    <div class="mt-3 mb-4">
+<!--    <div class="mt-3 mb-4">
         <a href="create-index.php" class="btn btn-outline-primary me-2">Создать индекс</a>
         <a href="index-settings.php" class="btn btn-outline-primary">Обновить настройки</a>
-    </div>
+    </div>-->
     <h3>Поиск</h3>
     <form action="" method="get">
         <div class="mb-2">
             <label>
-                <input type="checkbox" name="matching" value="all" <?= $matchingAll ? 'checked' : '' ?>> Matching
-                Strategy All
+                <input type="checkbox" name="matching" value="all" <?= $matchingAll ? 'checked' : '' ?>> Точный поиск
             </label>
         </div>
         <input type="search" class="form-control" name="query" value="<?= htmlspecialchars($searchQuery) ?>">
@@ -53,13 +52,15 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
         exit();
     }
 
-    $results = $client->index('catalog')
-        ->search($searchQuery, [
-            'attributesToHighlight' => ['*'],
-            'sort' => ['model:asc'],
-            'limit' => 50,
-            'matchingStrategy' => $matchingAll ? 'all' : 'last'
-        ]);
+    //facets
+    $config = [
+        'attributesToHighlight' => ['*'],
+        'sort' => ['model:asc'],
+        'limit' => 50,
+        'facets' => ['model', 'sections']
+    ];
+
+    $results = $client->index('catalog')->search(($matchingAll ? '"' . $searchQuery . '"' : $searchQuery), $config);
 
     if (!$results->count()) {
         $lang = new \B1rdex\Text\LangCorrect();
@@ -67,15 +68,8 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
 
         echo '<div class="alert alert-danger">' . $result . '</div>';
 
-        $results = $client->index('catalog')
-            ->search($result, [
-                'attributesToHighlight' => ['*'],
-                'sort' => ['model:asc'],
-                'limit' => 50,
-                'matchingStrategy' => $matchingAll ? 'all' : 'last'
-            ]);
+        $results = $client->index('catalog')->search(($matchingAll ? '"' . $result . '"' : $result), $config);
     }
-
 
     foreach ($results->getHits() as $hit) {
         ?>
@@ -92,7 +86,29 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
         <?php
     }
 
-    dd($results); ?>
+    ?>
+
+    <?php
+
+    if($results->count()) {
+        $models = $results->getFacetDistribution()['sections'] ?? [];
+        ?>
+        <div class="mb-3">
+            <h4 class="mt-4">Разделы</h4>
+            <?php
+            foreach ($models as $model => $count) {
+                ?>
+                <button type="button" class="btn btn-sm btn-primary mb-2">
+                    <?= $model ?> <span class="badge bg-white text-black"><?= $count ?></span>
+                </button>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
+    }
+
+    //dd($results); ?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

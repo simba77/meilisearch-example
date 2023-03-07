@@ -26,6 +26,12 @@ $index->updateSettings(
             'article',
             'barcode',
         ],
+        'filterableAttributes' => [
+            'model',
+            'article',
+            'barcode',
+            'sections',
+        ],
         'displayedAttributes' => ['*'],
         'stopWords' => [
             'на', // Дисплей на iphone 7
