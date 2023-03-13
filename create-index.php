@@ -10,8 +10,7 @@ $client = new Client('http://meilisearch:7700');
 
 $products = json_decode(file_get_contents('products.json'), true);
 
-$products = array_splice($products, 0, 10);
-
+// $products = array_splice($products, 0, 10);
 
 
 
