@@ -35,11 +35,11 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
     </div>-->
     <h3>Поиск</h3>
     <form action="" method="get">
-<!--        <div class="mb-2">
+        <div class="mb-2">
             <label>
-                <input type="checkbox" name="matching" value="all" <?php /*= $matchingAll ? 'checked' : '' */?>> Точный поиск
+                <input type="checkbox" name="matching" value="all" <?= $matchingAll ? 'checked' : '' ?>> Точный поиск
             </label>
-        </div>-->
+        </div>
         <input type="search" class="form-control" name="query" value="<?= htmlspecialchars($searchQuery) ?>">
         <div class="my-3">
             <button class="btn btn-primary" type="submit">Найти</button>
@@ -50,6 +50,11 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
 
     if (empty($searchQuery)) {
         exit();
+    }
+
+    // Если кавычка одна, то удаляем её. Если больше, то оставляем.
+    if(substr_count($searchQuery, '"') === 1) {
+        $searchQuery = str_replace('"', '', $searchQuery);
     }
 
     //facets
@@ -108,7 +113,7 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
         <?php
     }
 
-    //dd($results); ?>
+    dd($results); ?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
