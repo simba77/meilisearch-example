@@ -85,7 +85,7 @@ $matchingAll = isset($_REQUEST['matching']) && $_REQUEST['matching'] === 'all';
                 <div class="small">Модель: <?= $hit['_formatted']['model'] ?></div>
                 <div class="small">Артикул: <?= $hit['_formatted']['article'] ?></div>
                 <div class="small">Штрих-код: <?= $hit['_formatted']['barcode'] ?></div>
-                <div class="small">ID: <?= $hit['_formatted']['id'] ?></div>
+                <div class="small">Неправильное название: <?= $hit['_formatted']['badName'] ?></div>
             </div>
         </div>
         <?php

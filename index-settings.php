@@ -21,6 +21,7 @@ $index->updateSettings(
         'distinctAttribute' => null,
         'searchableAttributes' => [
             'name',
+            'badName',
             'model',
             'searchName',
             'article',
