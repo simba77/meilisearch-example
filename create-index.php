@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use B1rdex\Text\LangCorrect;
 use Meilisearch\Client;
 
 $client = new Client('http://meilisearch:7700');
